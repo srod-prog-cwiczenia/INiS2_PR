@@ -4,70 +4,74 @@
 #include "Lista.h"
 #include "ListaSformatowana.h"
 
-void zadaniaZObiektow() {
-	cout << "obiekt li jako zmienna lokalna----------------\n";
-	//obiekt li jako zmienna lokalna:
-	Lista li(10);
-	li.wydruk();
+namespace zadania {
+	void zadaniaZObiektow() {
+		cout << "obiekt li jako zmienna lokalna----------------\n";
+		//obiekt li jako zmienna lokalna:
+		Lista li(10);
+		li.wydruk();
 
-	cout << "obiekt li2 jako wskaźnik (\"pointer\")----------------\n";
+		cout << "obiekt li2 jako wskaźnik (\"pointer\")----------------\n";
 
-	//obiekt li2 jako wskaźnik ("pointer")
-	Lista* li2 = new Lista(5);
-	li2->wydruk();
-	delete li2;
-	/*
-	   UWAGA: jak w C# tworzyliśmy obiekt? Ano tak:
-	   Lista li2 = new Lista(5);
-	   li2.wydruk();
-	*/
+		//obiekt li2 jako wskaźnik ("pointer")
+		Lista* li2 = new Lista(5);
+		li2->wydruk();
+		delete li2;
+		/*
+		   UWAGA: jak w C# tworzyliśmy obiekt? Ano tak:
+		   Lista li2 = new Lista(5);
+		   li2.wydruk();
+		*/
 
-	cout << "obiekt klasy ListaSformatowana----------------\n";
-	ListaSformatowana* ls = new ListaSformatowana(10);
-	ls->wydruk();
-	delete ls;
-}
-//-----------------------
-unsigned char zadaniaZeWskaznikow(int wersja, string lancuch = "") {
-  // obliczyć sumę kontrolną łańcucha najpierw
-	// za pomocą string a potem używając char *
-	unsigned char suma;
-	bool zadanyParametr = !lancuch.empty();
-	do {
-		if (!zadanyParametr) {
-			cout << "Podaj napis (\"w\" oznacza wyjście)\n";
-			cin >> lancuch;
-			if (lancuch == "w") break;
-		}
-		suma = 13;
-		unsigned char pom = 1;
-	
-		switch (wersja) {
-		case 1:
-			for (char znak : lancuch) {
-				suma ^= (znak + pom++);
-			}
-			break;
-		case 2: {
-			const char* str = lancuch.c_str(); //c_str to rzutowanie string na char*
-			while (*str) {
-				suma ^= (*str++ + pom++);
-			}
-			break; 
-		}
-		}
-		if (zadanyParametr) {
-			break;
-		}
-		cout << "Suma kontrolna: " << (int)suma << "\n";
-		//ćwiczenie: napisać wersję bazującą na wskaźnikach char*
+		cout << "obiekt klasy ListaSformatowana----------------\n";
+		ListaSformatowana* ls = new ListaSformatowana(10);
+		ls->wydruk();
+		delete ls;
 	}
-	while (true);
-	return suma;
-}
-//-----------------------
-	// obliczyć sumę kontrolną łańcucha najpierw
-	  // za pomocą string a potem używając char *
+	//-----------------------
+	unsigned char zadaniaZeWskaznikow(int wersja, string lancuch = "") {
+		// obliczyć sumę kontrolną łańcucha najpierw
+		  // za pomocą string a potem używając char *
+		unsigned char suma = 13;
+		bool zadanyParametr = !lancuch.empty();
+		do {
+			if (!zadanyParametr) {
+				cout << "Podaj napis (\"w\" oznacza wyjście)\n";
+				cin >> lancuch;
+				if (lancuch == "w") break;
+			}
+			suma = 13;
+			unsigned char pom = 1;
+
+			switch (wersja) {
+			case 1:
+				for (char znak : lancuch) {
+					suma ^= (znak + pom++);
+				}
+				break;
+			case 2: {
+				// obliczyć sumę kontrolną łańcucha najpierw
+				  // za pomocą string a potem używając char *
+				const char* str = lancuch.c_str(); //c_str to rzutowanie string na char*
+				while (*str) {
+					suma ^= (*str++ + pom++);
+				}
+				break;
+			}
+			}
+			if (zadanyParametr) {
+				break;
+			}
+			cout << "Suma kontrolna: " << (int)suma << "\n";
+			//ćwiczenie: napisać wersję bazującą na wskaźnikach char*
+		} while (true);
+		return suma;
+	}
+	void testyJednostkowe() {
+
+
+	}
+};
 //=======================
 int main()
 {
@@ -75,21 +79,26 @@ int main()
 		cout << "1. Zadania z obiektow (Lista, ListaSformatowana)\n";
 		cout << "2. Zadania ze wskaznikow (suma kontrolna przez string)\n";
 		cout << "3. Zadania ze wskaznikow (suma kontrolna przez char*)\n";
+		cout << "4. Autotesty jednostkowe \n";
 		cout << "0. Koniec\n";
 		string txt;
 		cin >> txt;
 		if (txt.empty() || txt[0] == '0') exit(0);
 		switch (txt[0]) {
 		case '1': {
-			zadaniaZObiektow();
+			zadania::zadaniaZObiektow();
 			break;
 		}
 		case '2': {
-			zadaniaZeWskaznikow(1);
+			zadania::zadaniaZeWskaznikow(1);
 			break;
 		}
 		case '3': {
-			zadaniaZeWskaznikow(2);
+			zadania::zadaniaZeWskaznikow(2);
+			break;
+		}
+		case '4': {
+			zadania::testyJednostkowe();
 			break;
 		}
 		default:
