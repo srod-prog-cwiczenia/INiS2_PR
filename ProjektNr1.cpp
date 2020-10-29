@@ -1,7 +1,6 @@
 ﻿// ProjektNr1.cpp : Ten plik zawiera funkcję „main”. W nim rozpoczyna się i kończy wykonywanie programu.
 //
 
-#include <iostream>
 #include "Lista.h"
 #include "ListaSformatowana.h"
 
@@ -17,6 +16,11 @@ void zadaniaZObiektow() {
 	Lista* li2 = new Lista(5);
 	li2->wydruk();
 	delete li2;
+	/*
+	   UWAGA: jak w C# tworzyliśmy obiekt? Ano tak:
+	   Lista li2 = new Lista(5);
+	   li2.wydruk();
+	*/
 
 	cout << "obiekt klasy ListaSformatowana----------------\n";
 	ListaSformatowana* ls = new ListaSformatowana(10);
@@ -24,29 +28,53 @@ void zadaniaZObiektow() {
 	delete ls;
 }
 //-----------------------
-void zadaniaZeWskaznikow() {
+unsigned char zadaniaZeWskaznikow(int wersja, string lancuch = "") {
   // obliczyć sumę kontrolną łańcucha najpierw
 	// za pomocą string a potem używając char *
+	unsigned char suma;
+	bool zadanyParametr = !lancuch.empty();
 	do {
-		cout << "Podaj napis (\"w\" oznacza wyjście)\n";
-		string lancuch;
-		cin >> lancuch;
-		if (lancuch == "w") break;
-		unsigned char suma = 13, pom = 1;
+		if (!zadanyParametr) {
+			cout << "Podaj napis (\"w\" oznacza wyjście)\n";
+			cin >> lancuch;
+			if (lancuch == "w") break;
+		}
+		suma = 13;
+		unsigned char pom = 1;
 	
-		for (char znak : lancuch) {
-			suma ^= (znak + pom++);
+		switch (wersja) {
+		case 1:
+			for (char znak : lancuch) {
+				suma ^= (znak + pom++);
+			}
+			break;
+		case 2: {
+			const char* str = lancuch.c_str(); //c_str to rzutowanie string na char*
+			while (*str) {
+				suma ^= (*str++ + pom++);
+			}
+			break; 
+		}
+		}
+		if (zadanyParametr) {
+			break;
 		}
 		cout << "Suma kontrolna: " << (int)suma << "\n";
+		//ćwiczenie: napisać wersję bazującą na wskaźnikach char*
 	}
 	while (true);
+	return suma;
 }
+//-----------------------
+	// obliczyć sumę kontrolną łańcucha najpierw
+	  // za pomocą string a potem używając char *
 //=======================
 int main()
 {
 	do {
 		cout << "1. Zadania z obiektow (Lista, ListaSformatowana)\n";
-		cout << "2. Zadania ze wskaznikow\n";
+		cout << "2. Zadania ze wskaznikow (suma kontrolna przez string)\n";
+		cout << "3. Zadania ze wskaznikow (suma kontrolna przez char*)\n";
 		cout << "0. Koniec\n";
 		string txt;
 		cin >> txt;
@@ -57,7 +85,11 @@ int main()
 			break;
 		}
 		case '2': {
-			zadaniaZeWskaznikow();
+			zadaniaZeWskaznikow(1);
+			break;
+		}
+		case '3': {
+			zadaniaZeWskaznikow(2);
 			break;
 		}
 		default:

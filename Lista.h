@@ -1,13 +1,12 @@
 #pragma once
-using namespace std;
-#include <vector>
-#include <string>
-#include <iostream>
+#include "define.h"
 class Lista
 {
 private:
-    vector<string> vv;
+	//pola klasy:
+    vector<string> vv;	
 public:
+	//metody klasy:
 	Lista(); //jeden konstruktor
     Lista(int ile); //drugi konstruktor - wype³nia wektor liczbami 0...ile-1
     ~Lista(); //destruktor

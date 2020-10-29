@@ -152,6 +152,7 @@
     <ClCompile Include="ProjektNr1.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="define.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="ListaSformatowana.h" />
   </ItemGroup>
