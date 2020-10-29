@@ -87,6 +87,42 @@ namespace zadania {
 		}
 		cout << "Wszystkie testy [ OK ].\n";
 	}
+	void klasyAbstrakcyjne() {
+		/*
+		  stworzyć interfejs (=klasa abstrakcyjną) do pobierania
+		  zawartości pliku znak po znaku.
+		*/
+		class CzytaczPlikuAbs { /*to jest klasa abstrakcyjna, czyli 
+    nie można tworzyć jej obiektów, natomiast służy do definiowania
+	klas potomnych */
+		public:
+			virtual char getZnak() = 0;
+			virtual bool koniecPliku() = 0;
+			CzytaczPlikuAbs(const string& sciezkaDoPliku) {};
+			virtual ~CzytaczPlikuAbs() {};
+		};
+		class CzytaczPliku : public CzytaczPlikuAbs {
+			//TODO: do oprogramowania next time ;) !!!
+		public:
+			char getZnak() { return ' '; };
+			bool koniecPliku() { return true; };
+			CzytaczPliku(const string& sciezkaDoPliku) : 
+				CzytaczPlikuAbs(sciezkaDoPliku) {};
+			~CzytaczPliku() {};
+		};
+		/*implementacja tego interfejsu ma działac tak:
+		  CzytaczPliku *cp = new CzytaczPliku("C:\\pliczek.txt");
+		  while (!cp->koniecPliku()) {
+		    char znak = cp->getZnak();
+		  }
+		  delete cp;
+		*/
+		CzytaczPliku* cp = new CzytaczPliku("C:\\pliczek.txt");
+		while (!cp->koniecPliku()) {
+			char znak = cp->getZnak();
+		}
+		delete cp;
+	}
 };
 //=======================
 int main()
