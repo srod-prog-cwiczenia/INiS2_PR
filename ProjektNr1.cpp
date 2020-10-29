@@ -33,7 +33,7 @@ namespace zadania {
 		// obliczyć sumę kontrolną łańcucha najpierw
 		  // za pomocą string a potem używając char *
 		unsigned char suma = 13;
-		bool zadanyParametr = !lancuch.empty();
+		const bool zadanyParametr = !lancuch.empty();
 		do {
 			if (!zadanyParametr) {
 				cout << "Podaj napis (\"w\" oznacza wyjście)\n";
@@ -67,9 +67,25 @@ namespace zadania {
 		} while (true);
 		return suma;
 	}
+	string losowyLancuchFactory() {
+		srand(time(NULL)); //zainicjowanie generatora liczb losowych
+		const unsigned int ile = rand() % 1000 + 10;
+		string rezultat;
+		for (unsigned int j = 0; j < ile; j++) {
+			rezultat += (char)(32 + rand() % 95);
+		}
+		return rezultat;
+	}
 	void testyJednostkowe() {
-
-
+		for (string txt : {"Jeden_dwa_trzy", "Ala_ma_kota", 
+			"Inny test"}) {
+			assert(zadaniaZeWskaznikow(1, txt) == zadaniaZeWskaznikow(2, txt));
+		}
+		for (unsigned int licznik = 0; licznik < 10000; licznik++) {
+			string txt = losowyLancuchFactory();
+			assert(zadaniaZeWskaznikow(1, txt) == zadaniaZeWskaznikow(2, txt));
+		}
+		cout << "Wszystkie testy [ OK ].\n";
 	}
 };
 //=======================
