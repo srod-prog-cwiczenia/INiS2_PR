@@ -81,7 +81,6 @@ namespace zadania {
 	*/
 	constexpr auto DLUGOSC_DOMYSLNA = -1;
 	string losowyLancuchFactory(unsigned int dlugosc = DLUGOSC_DOMYSLNA) {
-		srand(time(NULL)); //zainicjowanie generatora liczb losowych
 		const unsigned int ile = 
 			(dlugosc == DLUGOSC_DOMYSLNA ? rand() % 1000 + 10 : dlugosc);
 		string rezultat;
@@ -107,15 +106,23 @@ namespace zadania {
 		string lancuch = losowyLancuchFactory(50);
 		//pierwszy sposób, nienadzwyczajny :) :
 		char kopia1[1000]; //tablica tysiąca znaków 
-		//strcpy(kopia, lancuch.c_str());
+#ifdef KOMPILATOR_CPP_VISUAL
 		strcpy_s(kopia1, lancuch.c_str());
+#else
+		strcpy(kopia, lancuch.c_str());
+#endif
 		cout << kopia1 << endl;
 		//drugi sposób - zaalokować odpowiednią ilość pamięci na dane:
 		//wskazówka użyć pary malloc i free.
 		char* kopia2 = (char*)malloc(lancuch.length() + 1); // + 1 bo na znak \0 na końcu
 		//uwaga: malloc tworzy wskaźnik ,,nieokreślonego typu'' void *,
 		//jest to tak zwany wskaźnik generyczny
-		strcpy_s(kopia2, lancuch.length() + 1, lancuch.c_str());
+		assert(kopia2 && "Przypuszczalnie zabraklo pamieci dla kopia2");
+#ifdef KOMPILATOR_CPP_VISUAL
+		strcpy_s(kopia2, lancuch.length() + 1, lancuch.c_str()); 
+#else
+		strcpy(kopia2, lancuch.c_str());
+#endif
 		cout << kopia2 << endl;
 		free(kopia2);
 	}
@@ -159,6 +166,7 @@ namespace zadania {
 //=======================
 int main()
 {
+	srand(time(NULL)); //zainicjowanie generatora liczb losowych
 	do {
 		cout << "1. Zadania z obiektow (Lista, ListaSformatowana)\n";
 		cout << "2. Zadania ze wskaznikow (suma kontrolna przez string)\n";
