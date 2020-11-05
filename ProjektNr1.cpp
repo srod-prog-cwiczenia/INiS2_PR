@@ -102,8 +102,14 @@ namespace zadania {
 		cout << "Wszystkie testy [ OK ].\n";
 	}
 	void kopiowanieLancuchow() {
-//TODO:
-
+//TODO: ten łańcuch skopiować niskopoziomowo na inny tak by można
+		//było go modyfikować
+		string lancuch = losowyLancuchFactory(100);
+		//pierwszy sposób, nienadzwyczajny :) :
+		char kopia[101]; //tablica tysiąca znaków 
+		//strcpy(kopia, lancuch.c_str());
+		strcpy_s(kopia, lancuch.c_str());
+		cout << kopia;
 	}
 	void klasyAbstrakcyjne() {
 		/*
