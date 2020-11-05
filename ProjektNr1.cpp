@@ -104,12 +104,20 @@ namespace zadania {
 	void kopiowanieLancuchow() {
 //TODO: ten łańcuch skopiować niskopoziomowo na inny tak by można
 		//było go modyfikować
-		string lancuch = losowyLancuchFactory(100);
+		string lancuch = losowyLancuchFactory(50);
 		//pierwszy sposób, nienadzwyczajny :) :
-		char kopia[101]; //tablica tysiąca znaków 
+		char kopia1[1000]; //tablica tysiąca znaków 
 		//strcpy(kopia, lancuch.c_str());
-		strcpy_s(kopia, lancuch.c_str());
-		cout << kopia;
+		strcpy_s(kopia1, lancuch.c_str());
+		cout << kopia1 << endl;
+		//drugi sposób - zaalokować odpowiednią ilość pamięci na dane:
+		//wskazówka użyć pary malloc i free.
+		char* kopia2 = (char*)malloc(lancuch.length() + 1); // + 1 bo na znak \0 na końcu
+		//uwaga: malloc tworzy wskaźnik ,,nieokreślonego typu'' void *,
+		//jest to tak zwany wskaźnik generyczny
+		strcpy_s(kopia2, lancuch.length() + 1, lancuch.c_str());
+		cout << kopia2 << endl;
+		free(kopia2);
 	}
 	void klasyAbstrakcyjne() {
 		/*
