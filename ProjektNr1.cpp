@@ -32,6 +32,10 @@ namespace zadania {
 	unsigned char zadaniaZeWskaznikow(int wersja, string lancuch = "") {
 		// obliczyć sumę kontrolną łańcucha najpierw
 		  // za pomocą string a potem używając char *
+		/*
+		* @wersja 1 - oznacza obliczenie sumy kontrolnej przy użyciu klasy string
+		* @wersja 2 - oznacza obliczenie sumy kontrolnej przy użyciu char *
+		*/
 		unsigned char suma = 13;
 		const bool zadanyParametr = !lancuch.empty();
 		do {
@@ -53,6 +57,8 @@ namespace zadania {
 				// obliczyć sumę kontrolną łańcucha najpierw
 				  // za pomocą string a potem używając char *
 				const char* str = lancuch.c_str(); //c_str to rzutowanie string na char*
+				//jak zrobić zamianę (=rzutowanie) char* na string? 
+				//odp: string txt = (string)str;
 				while (*str) {
 					suma ^= (*str++ + pom++);
 				}
@@ -67,9 +73,17 @@ namespace zadania {
 		} while (true);
 		return suma;
 	}
-	string losowyLancuchFactory() {
+	/*
+	  zadanie: rozszerzyć działanie tego Factory
+	  przyjmując że jak ktoś poda parametr unsigned int to
+	  znaczy jaką długość ma mieć generowany łańcuch.
+	  Jak nie poda to długość ma być jak do tej pory (losowa).
+	*/
+	constexpr auto DLUGOSC_DOMYSLNA = -1;
+	string losowyLancuchFactory(unsigned int dlugosc = DLUGOSC_DOMYSLNA) {
 		srand(time(NULL)); //zainicjowanie generatora liczb losowych
-		const unsigned int ile = rand() % 1000 + 10;
+		const unsigned int ile = 
+			(dlugosc == DLUGOSC_DOMYSLNA ? rand() % 1000 + 10 : dlugosc);
 		string rezultat;
 		for (unsigned int j = 0; j < ile; j++) {
 			rezultat += (char)(32 + rand() % 95);
@@ -86,6 +100,10 @@ namespace zadania {
 			assert(zadaniaZeWskaznikow(1, txt) == zadaniaZeWskaznikow(2, txt));
 		}
 		cout << "Wszystkie testy [ OK ].\n";
+	}
+	void kopiowanieLancuchow() {
+//TODO:
+
 	}
 	void klasyAbstrakcyjne() {
 		/*
@@ -131,7 +149,8 @@ int main()
 		cout << "1. Zadania z obiektow (Lista, ListaSformatowana)\n";
 		cout << "2. Zadania ze wskaznikow (suma kontrolna przez string)\n";
 		cout << "3. Zadania ze wskaznikow (suma kontrolna przez char*)\n";
-		cout << "4. Autotesty jednostkowe \n";
+		cout << "4. Kopiowanie łańcucha\n";
+		cout << "5. Autotesty jednostkowe \n";
 		cout << "0. Koniec\n";
 		string txt;
 		cin >> txt;
@@ -150,6 +169,10 @@ int main()
 			break;
 		}
 		case '4': {
+			zadania::kopiowanieLancuchow();
+			break;
+		}
+		case '5': {
 			zadania::testyJednostkowe();
 			break;
 		}
