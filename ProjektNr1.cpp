@@ -69,7 +69,6 @@ namespace zadania {
 				break;
 			}
 			cout << "Suma kontrolna: " << (int)suma << "\n";
-			//ćwiczenie: napisać wersję bazującą na wskaźnikach char*
 		} while (true);
 		return suma;
 	}
@@ -78,6 +77,7 @@ namespace zadania {
 	  przyjmując że jak ktoś poda parametr unsigned int to
 	  znaczy jaką długość ma mieć generowany łańcuch.
 	  Jak nie poda to długość ma być jak do tej pory (losowa).
+	  Zadanie wykonane.
 	*/
 	constexpr auto DLUGOSC_DOMYSLNA = -1;
 	string losowyLancuchFactory(unsigned int dlugosc = DLUGOSC_DOMYSLNA) {
@@ -106,6 +106,7 @@ namespace zadania {
 		string lancuch = losowyLancuchFactory(50);
 		//pierwszy sposób, nienadzwyczajny :) :
 		char kopia1[1000]; //tablica tysiąca znaków 
+				
 #ifdef KOMPILATOR_CPP_VISUAL
 		strcpy_s(kopia1, lancuch.c_str());
 #else
