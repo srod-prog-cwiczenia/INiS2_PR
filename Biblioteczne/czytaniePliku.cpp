@@ -1,10 +1,12 @@
 /*
 TODO: sprawdziæ (przeœledziæ) jak funkcjonuje ta klasa:
 ona czyta ca³y bufor z pliku a ,,symuluje'' pobieranie po jednym
-elemencie.
+elemencie. 
+TODO: dorobiæ header do tego modu³u, do³¹czyæ do projektu
+i napisaæ test tego modu³u.
 */
-#define ROZMIAR_BUFORA_TFI 4096
-#define POCZATEK_WCZYTYWANIA_TFI -1
+constexpr auto ROZMIAR_BUFORA_TFI = 4096;
+constexpr auto POCZATEK_WCZYTYWANIA_TFI = -1;
 class TFIn {
 	private:
 		FILE *fff;

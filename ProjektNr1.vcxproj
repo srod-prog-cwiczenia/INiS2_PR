@@ -147,11 +147,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CzytaczePlikow.cpp" />
     <ClCompile Include="Lista.cpp" />
     <ClCompile Include="ListaSformatowana.cpp" />
     <ClCompile Include="ProjektNr1.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CzytaczePlikow.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="ListaSformatowana.h" />

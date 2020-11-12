@@ -3,6 +3,7 @@
 
 #include "Lista.h"
 #include "ListaSformatowana.h"
+#include "CzytaczePlikow.h"
 
 namespace zadania {
 	void zadaniaZObiektow() {
@@ -128,42 +129,6 @@ namespace zadania {
 		free(kopia2);
 	}
 	void klasyAbstrakcyjne() {
-		/*
-		  stworzyć interfejs (=klasa abstrakcyjną) do pobierania
-		  zawartości pliku znak po znaku.
-		*/
-		class CzytaczPlikuAbs { /*to jest klasa abstrakcyjna, czyli 
-    nie można tworzyć jej obiektów, natomiast służy do definiowania
-	klas potomnych */
-		public:
-			virtual char getZnak() = 0;
-			virtual bool koniecPliku() = 0;
-			CzytaczPlikuAbs(const string& sciezkaDoPliku) {};
-			virtual ~CzytaczPlikuAbs() {};
-		};
-		class CzytaczPliku : public CzytaczPlikuAbs {
-		private:
-			FILE* ff = NULL;
-		public:
-			char getZnak() { 
-				char znak;
-				fread(&znak, 1, 1, ff);
-				return znak; };
-			bool koniecPliku() { return feof(ff); };
-			CzytaczPliku(const string& sciezkaDoPliku) : 
-				CzytaczPlikuAbs(sciezkaDoPliku) {
-#ifdef KOMPILATOR_CPP_VISUAL
-				fopen_s(&ff, sciezkaDoPliku.c_str(), "rb");
-#else
-				ff = fopen(sciezkaDoPliku.c_str(), "rb");
-#endif 
-//w visualu używamy raczej fopen_s - lepsza metoda ale
-				//ma inną trochę składnię
-				/*rb to tryb otwarcia pliku - r - tylko na odczyt,
-				b - binarny */
-			};
-			~CzytaczPliku() { fclose(ff); };
-		};
 		/*implementacja tego interfejsu ma działac tak:
 		  CzytaczPliku *cp = new CzytaczPliku("C:\\pliczek.txt");
 		  while (!cp->koniecPliku()) {
@@ -171,7 +136,7 @@ namespace zadania {
 		  }
 		  delete cp;
 		*/
-		CzytaczPliku* cp = new CzytaczPliku("pliczek.txt");
+		CzytaczePlikow::CzytaczPliku* cp = new CzytaczePlikow::CzytaczPliku("pliczek.txt");
 		while (!cp->koniecPliku()) {
 			char znak = cp->getZnak();
 			cout << znak;
@@ -185,7 +150,7 @@ namespace zadania {
 
 		/*,,tymczasowy'' sposób na ,,załatanie'' bolączki
 		opisanej w TODO powyżej */
-		CzytaczPliku* cp2 = new CzytaczPliku("pliczek.txt");
+		CzytaczePlikow::CzytaczPliku* cp2 = new CzytaczePlikow::CzytaczPliku("pliczek.txt");
 		while (!cp2->koniecPliku()) {
 			char znak = cp2->getZnak();
 			if (!cp2->koniecPliku())
