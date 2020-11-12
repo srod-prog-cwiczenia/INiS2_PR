@@ -176,8 +176,24 @@ namespace zadania {
 			char znak = cp->getZnak();
 			cout << znak;
 		}
+		/*
+		TODO: implementacja czytacza działa,
+		ale na końcu przeczytanego pliku pojawia się dodatkowy znak,
+		wyjaśnić dlaczego. */
 		delete cp;
 		cout << endl;
+
+		/*,,tymczasowy'' sposób na ,,załatanie'' bolączki
+		opisanej w TODO powyżej */
+		CzytaczPliku* cp2 = new CzytaczPliku("pliczek.txt");
+		while (!cp2->koniecPliku()) {
+			char znak = cp2->getZnak();
+			if (!cp2->koniecPliku())
+				cout << znak;
+		}
+		delete cp2;
+		cout << endl;
+
 	}
 };
 //=======================
