@@ -136,7 +136,7 @@ namespace zadania {
 		  }
 		  delete cp;
 		*/
-		CzytaczePlikow::CzytaczPliku* cp = new CzytaczePlikow::CzytaczPliku("pliczek.txt");
+		CzytaczePlikow::CzytaczPliku1* cp = new CzytaczePlikow::CzytaczPliku1("pliczek.txt");
 		while (!cp->koniecPliku()) {
 			char znak = cp->getZnak();
 			cout << znak;
@@ -150,7 +150,7 @@ namespace zadania {
 
 		/*,,tymczasowy'' sposób na ,,załatanie'' bolączki
 		opisanej w TODO powyżej */
-		CzytaczePlikow::CzytaczPliku* cp2 = new CzytaczePlikow::CzytaczPliku("pliczek.txt");
+		CzytaczePlikow::CzytaczPliku1* cp2 = new CzytaczePlikow::CzytaczPliku1("pliczek.txt");
 		while (!cp2->koniecPliku()) {
 			char znak = cp2->getZnak();
 			if (!cp2->koniecPliku())

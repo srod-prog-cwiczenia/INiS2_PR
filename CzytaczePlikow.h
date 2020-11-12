@@ -17,7 +17,7 @@ klas potomnych */
   stworzyæ interfejs (=klasa abstrakcyjn¹) do pobierania
   zawartoœci pliku znak po znaku.
 */
-	class CzytaczPliku : public CzytaczPlikuAbs {
+	class CzytaczPliku1 : public CzytaczPlikuAbs {
 	private:
 		FILE* ff = NULL;
 	public:
@@ -27,7 +27,7 @@ klas potomnych */
 			return znak;
 		};
 		bool koniecPliku() { return feof(ff); };
-		CzytaczPliku(const string& sciezkaDoPliku) :
+		CzytaczPliku1(const string& sciezkaDoPliku) :
 			CzytaczPlikuAbs(sciezkaDoPliku) {
 #ifdef KOMPILATOR_CPP_VISUAL
 			fopen_s(&ff, sciezkaDoPliku.c_str(), "rb");
@@ -39,7 +39,21 @@ klas potomnych */
 							/*rb to tryb otwarcia pliku - r - tylko na odczyt,
 							b - binarny */
 		};
-		~CzytaczPliku() { fclose(ff); };
+		~CzytaczPliku1() { fclose(ff); };
+	};
+	/*TODO: napisaæ CzytaczPliku2 bazuj¹cy na fstream */
+	class CzytaczPliku2 : public CzytaczPlikuAbs {
+	private:
+		FILE* ff = NULL;
+	public:
+		char getZnak() {
+			return '0';
+		};
+		bool koniecPliku() { return false; };
+		CzytaczPliku2(const string& sciezkaDoPliku) :
+			CzytaczPlikuAbs(sciezkaDoPliku) {
+		};
+		~CzytaczPliku2() {};
 	};
 };
 
