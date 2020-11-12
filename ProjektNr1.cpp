@@ -142,13 +142,27 @@ namespace zadania {
 			virtual ~CzytaczPlikuAbs() {};
 		};
 		class CzytaczPliku : public CzytaczPlikuAbs {
-			//TODO: do oprogramowania next time ;) !!!
+		private:
+			FILE* ff = NULL;
 		public:
-			char getZnak() { return ' '; };
-			bool koniecPliku() { return true; };
+			char getZnak() { 
+				char znak;
+				fread(&znak, 1, 1, ff);
+				return znak; };
+			bool koniecPliku() { return feof(ff); };
 			CzytaczPliku(const string& sciezkaDoPliku) : 
-				CzytaczPlikuAbs(sciezkaDoPliku) {};
-			~CzytaczPliku() {};
+				CzytaczPlikuAbs(sciezkaDoPliku) {
+#ifdef KOMPILATOR_CPP_VISUAL
+				fopen_s(&ff, sciezkaDoPliku.c_str(), "rb");
+#else
+				ff = fopen(sciezkaDoPliku.c_str(), "rb");
+#endif 
+//w visualu używamy raczej fopen_s - lepsza metoda ale
+				//ma inną trochę składnię
+				/*rb to tryb otwarcia pliku - r - tylko na odczyt,
+				b - binarny */
+			};
+			~CzytaczPliku() { fclose(ff); };
 		};
 		/*implementacja tego interfejsu ma działac tak:
 		  CzytaczPliku *cp = new CzytaczPliku("C:\\pliczek.txt");
@@ -157,23 +171,26 @@ namespace zadania {
 		  }
 		  delete cp;
 		*/
-		CzytaczPliku* cp = new CzytaczPliku("C:\\pliczek.txt");
+		CzytaczPliku* cp = new CzytaczPliku("pliczek.txt");
 		while (!cp->koniecPliku()) {
 			char znak = cp->getZnak();
+			cout << znak;
 		}
 		delete cp;
+		cout << endl;
 	}
 };
 //=======================
 int main()
 {
-	srand(time(NULL)); //zainicjowanie generatora liczb losowych
+	srand((int)time(NULL)); //zainicjowanie generatora liczb losowych
 	do {
 		cout << "1. Zadania z obiektow (Lista, ListaSformatowana)\n";
 		cout << "2. Zadania ze wskaznikow (suma kontrolna przez string)\n";
 		cout << "3. Zadania ze wskaznikow (suma kontrolna przez char*)\n";
 		cout << "4. Kopiowanie łańcucha\n";
 		cout << "5. Autotesty jednostkowe \n";
+		cout << "6. Zadania z klas abstrakcyjnych\n";
 		cout << "0. Koniec\n";
 		string txt;
 		cin >> txt;
@@ -197,6 +214,10 @@ int main()
 		}
 		case '5': {
 			zadania::testyJednostkowe();
+			break;
+		}
+		case '6': {
+			zadania::klasyAbstrakcyjne();
 			break;
 		}
 		default:
