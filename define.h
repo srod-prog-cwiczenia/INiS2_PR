@@ -5,6 +5,7 @@
 #include <iostream>
 #include <assert.h>
 #include <time.h>       
+#include <fstream>
 using namespace std;
 //makra
 #ifdef _MSC_VER

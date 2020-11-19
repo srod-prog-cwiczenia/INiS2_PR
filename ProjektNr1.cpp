@@ -136,27 +136,39 @@ namespace zadania {
 		  }
 		  delete cp;
 		*/
-		CzytaczePlikow::CzytaczPliku1* cp = new CzytaczePlikow::CzytaczPliku1("pliczek.txt");
-		while (!cp->koniecPliku()) {
-			char znak = cp->getZnak();
+		cout << "Zawartość pliku przeczytana przez CzytaczPliku1 : " << endl;
+		CzytaczePlikow::CzytaczPliku1* cp1 = new CzytaczePlikow::CzytaczPliku1("pliczek.txt");
+		while (!cp1->koniecPliku()) {
+			char znak = cp1->getZnak();
 			cout << znak;
 		}
 		/*
 		TODO: implementacja czytacza działa,
 		ale na końcu przeczytanego pliku pojawia się dodatkowy znak,
 		wyjaśnić dlaczego. */
-		delete cp;
+		delete cp1;
 		cout << endl;
 
 		/*,,tymczasowy'' sposób na ,,załatanie'' bolączki
 		opisanej w TODO powyżej */
-		CzytaczePlikow::CzytaczPliku1* cp2 = new CzytaczePlikow::CzytaczPliku1("pliczek.txt");
-		while (!cp2->koniecPliku()) {
-			char znak = cp2->getZnak();
-			if (!cp2->koniecPliku())
+		cout << "Zawartość pliku przeczytana przez CzytaczPliku1 ale z"
+			" ''ucięciem zbędnego ostatniego znaku) : " << endl;
+		cp1 = new CzytaczePlikow::CzytaczPliku1("pliczek.txt");
+		while (!cp1->koniecPliku()) {
+			char znak = cp1->getZnak();
+			if (!cp1->koniecPliku())
 				cout << znak;
 		}
+		delete cp1;
+
+		cout << "Zawartość pliku przeczytana przez CzytaczPliku2 (fstream) : " << endl;
+		CzytaczePlikow::CzytaczPliku2* cp2 = new CzytaczePlikow::CzytaczPliku2("pliczek.txt");
+		while (!cp2->koniecPliku()) {
+			char znak = cp2->getZnak();
+			cout << znak;
+		}
 		delete cp2;
+
 		cout << endl;
 
 	}
@@ -166,13 +178,13 @@ int main()
 {
 	srand((int)time(NULL)); //zainicjowanie generatora liczb losowych
 	do {
-		cout << "1. Zadania z obiektow (Lista, ListaSformatowana)\n";
-		cout << "2. Zadania ze wskaznikow (suma kontrolna przez string)\n";
-		cout << "3. Zadania ze wskaznikow (suma kontrolna przez char*)\n";
-		cout << "4. Kopiowanie łańcucha\n";
-		cout << "5. Autotesty jednostkowe \n";
-		cout << "6. Zadania z klas abstrakcyjnych\n";
-		cout << "0. Koniec\n";
+		cout << "1. Zadania z obiektow (Lista, ListaSformatowana)\n"
+		  "2. Zadania ze wskaznikow (suma kontrolna przez string)\n"
+		  "3. Zadania ze wskaznikow (suma kontrolna przez char*)\n"
+		  "4. Kopiowanie łańcucha\n"
+		  "5. Autotesty jednostkowe zadania ze wskaźników \n"
+		  "6. Zadania z klas abstrakcyjnych (klasa CzytaczPlikuAbs i jej implementacje)\n"
+		  "0. Koniec\n";
 		string txt;
 		cin >> txt;
 		if (txt.empty() || txt[0] == '0') exit(0);

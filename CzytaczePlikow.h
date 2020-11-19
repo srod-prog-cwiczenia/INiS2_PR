@@ -44,16 +44,19 @@ klas potomnych */
 	/*TODO: napisaæ CzytaczPliku2 bazuj¹cy na fstream */
 	class CzytaczPliku2 : public CzytaczPlikuAbs {
 	private:
-		FILE* ff = NULL;
+		fstream ff;
 	public:
 		char getZnak() {
-			return '0';
+			char znak;
+			ff >> znak;
+			return znak;
 		};
-		bool koniecPliku() { return false; };
+		bool koniecPliku() { return ff.eof(); };
 		CzytaczPliku2(const string& sciezkaDoPliku) :
 			CzytaczPlikuAbs(sciezkaDoPliku) {
+			ff.open(sciezkaDoPliku.c_str(), ios::in); /*tylko na odczyt */
 		};
-		~CzytaczPliku2() {};
+		~CzytaczPliku2() { ff.close(); };
 	};
 };
 
