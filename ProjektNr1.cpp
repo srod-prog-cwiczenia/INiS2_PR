@@ -132,7 +132,7 @@ namespace zadania {
 		/*implementacja tego interfejsu ma działac tak:
 		  CzytaczPliku *cp = new CzytaczPliku("C:\\pliczek.txt");
 		  while (!cp->koniecPliku()) {
-		    char znak = cp->getZnak();
+			char znak = cp->getZnak();
 		  }
 		  delete cp;
 		*/
@@ -184,6 +184,19 @@ namespace zadania {
 		cout << "To jest lancuch char* " + to_string(liczba) << endl;
 		cout << "To jest lancuch char* " << liczba << endl;
 	}
+
+	void przeladowanieOperatorow() {
+		//TODO:
+		/*
+		1. zdefiniowac strukture (słowo kluczowe struct) Osoba [DONE - patrz define.h]
+		2. dodać do niej konstruktor;
+		3. przeciążyć operatory: rzutowania (string) i porównania : <
+		4. TODO w domu: przeciążyć jeszcze ! i inne pozostałe
+		   operatory porównania: >, ==, <=, >=, !=
+ 	    5. stworzyć kontener map<Osoba, double> i sprawdzić
+		   że nieodzowne jest przeciążenie operatora < na stukturę Osoba.
+		*/
+	}
 };
 //=======================
 int main()
@@ -197,6 +210,7 @@ int main()
 		  "5. Autotesty jednostkowe zadania ze wskaźników \n"
 		  "6. Zadania z klas abstrakcyjnych (klasa CzytaczPlikuAbs i jej implementacje)\n"
 		  "7. Przykład na błąd podczas rzutowania int do łańcucha\n"
+		  "8. Zadania z przeładowania operatorów\n"
 		  "0. Koniec\n";
 		string txt;
 		cin >> txt;
@@ -229,6 +243,9 @@ int main()
 		case '7': {
 			zadania::przykladNaDodawanieLiczbyDoLancucha();
 			break;
+		}
+		case '8': {
+			zadania::przeladowanieOperatorow();
 		}
 		default:
 			break;
