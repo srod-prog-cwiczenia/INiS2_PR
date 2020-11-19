@@ -189,13 +189,22 @@ namespace zadania {
 		//TODO:
 		/*
 		1. zdefiniowac strukture (słowo kluczowe struct) Osoba [DONE - patrz define.h]
-		2. dodać do niej konstruktor;
+		2. dodać do niej konstruktor [DONE];
 		3. przeciążyć operatory: rzutowania (string) i porównania : <
 		4. TODO w domu: przeciążyć jeszcze ! i inne pozostałe
 		   operatory porównania: >, ==, <=, >=, !=
  	    5. stworzyć kontener map<Osoba, double> i sprawdzić
 		   że nieodzowne jest przeciążenie operatora < na stukturę Osoba.
 		*/
+		Osoba oso1("Adam", "Kowalski", "Sloneczna", 7);
+		Osoba oso2 = { "Anna", "Kowalska", "Sloneczna", 7 }; //konstruktor kopiujący
+		Osoba oso3 = oso1;
+		oso3.nazwisko = "Koralewski";
+		/*można też tak tworzyć tablice obiektów: */
+		Osoba tabOso[2] = { {"Dorota", "Nowak", "Przytulna", 23}, 
+			{"Damian", "Nowak", "Przytulna", 23} };
+
+		cout << "Osoba 1: " << (string)oso1 << endl;
 	}
 };
 //=======================
