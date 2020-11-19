@@ -172,6 +172,18 @@ namespace zadania {
 		cout << endl;
 
 	}
+	void przykladNaDodawanieLiczbyDoLancucha() {
+		int liczba = 7;
+		cout << "To jest lancuch char* " << endl;
+		// efekt nie jest taki jakim go byśmy oczekiwali:
+		cout << "To jest lancuch char* " + liczba << endl;
+		/*for (int ii = 0; ii < 15; ii++) {
+			cout << "To jest lancuch char* " + ii << endl;
+		}*/ // to jest test wielu przesunięć wskaźnika na początek łańcucha
+		//teraz powinno być dobrze:
+		cout << "To jest lancuch char* " + to_string(liczba) << endl;
+		cout << "To jest lancuch char* " << liczba << endl;
+	}
 };
 //=======================
 int main()
@@ -184,6 +196,7 @@ int main()
 		  "4. Kopiowanie łańcucha\n"
 		  "5. Autotesty jednostkowe zadania ze wskaźników \n"
 		  "6. Zadania z klas abstrakcyjnych (klasa CzytaczPlikuAbs i jej implementacje)\n"
+		  "7. Przykład na błąd podczas rzutowania int do łańcucha\n"
 		  "0. Koniec\n";
 		string txt;
 		cin >> txt;
@@ -211,6 +224,10 @@ int main()
 		}
 		case '6': {
 			zadania::klasyAbstrakcyjne();
+			break;
+		}
+		case '7': {
+			zadania::przykladNaDodawanieLiczbyDoLancucha();
 			break;
 		}
 		default:
