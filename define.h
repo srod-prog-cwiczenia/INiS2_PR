@@ -28,5 +28,9 @@ struct Osoba {
 	};
 	/*prze³adowanie operatora rzutowania: */
 	operator string() { return toString(); };
-
+	/*prze³adowanie operatora negacji: */
+	bool operator !() {
+		return imie.empty() && nazwisko.empty() &&
+			adr.ulica.empty() && adr.nr_domu == 0;
+	};
 };

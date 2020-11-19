@@ -205,6 +205,9 @@ namespace zadania {
 			{"Damian", "Nowak", "Przytulna", 23} };
 
 		cout << "Osoba 1: " << (string)oso1 << endl;
+		assert (!oso1 == false);
+		assert (!Osoba("", "", "", 0));
+		cout << "TESTY PRZESZLY POMYŚLNIE\n";
 	}
 };
 //=======================
