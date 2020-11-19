@@ -1,0 +1,7 @@
+[11:57] Marcin 55349
+znak eof zostaje w strumieniu wiec jak sie na niego trafia to trzeba wyczyscic strumien 
+
+[12:11] Marcin 55349
+dlatego korzysta sie ze stringa do takich operacji?
+
+
