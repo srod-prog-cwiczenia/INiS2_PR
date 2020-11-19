@@ -33,4 +33,14 @@ struct Osoba {
 		return imie.empty() && nazwisko.empty() &&
 			adr.ulica.empty() && adr.nr_domu == 0;
 	};
+	/* prze³adowanie operatora < */
+	bool operator <(const Osoba& oo) {
+		/*inny sposób, ale czy dobry???*/
+		//return (string)(*this) < (string)oo;
+
+		if (nazwisko < oo.nazwisko) return true;
+		if (nazwisko > oo.nazwisko) return false;
+		/*TODO: dokoñczyæ (...)*/
+
+	};
 };
