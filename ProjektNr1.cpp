@@ -244,6 +244,16 @@ namespace zadania {
 			cout << (string)ele.first << " -> " << ele.second << endl;
 		}
 	}
+	void zadaniaZFunktorow() {
+		/*
+		stworzyć vector zawierający Osoby.
+		dorobić funktor zliczający wypisywaną osobę 
+		string fff(const Osoba & oso) {};
+		użyć funktora do numeracji linii w funkcji transform (moduł <algorith>)
+		*/
+		//TODO: do dokończenia za tydzień
+
+	}
 };
 //=======================
 int main()
@@ -258,6 +268,7 @@ int main()
 		  "6. Zadania z klas abstrakcyjnych (klasa CzytaczPlikuAbs i jej implementacje)\n"
 		  "7. Przykład na błąd podczas rzutowania int do łańcucha\n"
 		  "8. Zadania z przeładowania operatorów (testy jednostkowe przeładowań)\n"
+		  "9. Zadania z funktorów zastosowanych do przetwarzania kolekcji (moduł <algorithm>)"
 		  "0. Koniec\n";
 		string txt;
 		cin >> txt;
@@ -312,6 +323,10 @@ int main()
 			}
 		} while (true);
 		break;
+		}
+		case '9': {
+			zadania::zadaniaZFunktorow();
+			break;
 		}
 		default:
 			break;
