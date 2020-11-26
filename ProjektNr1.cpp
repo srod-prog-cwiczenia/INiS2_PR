@@ -6,6 +6,11 @@
 #include "CzytaczePlikow.h"
 
 namespace zadania {
+	const static Osoba tabOsoC[] = { {"Dorota", "Nowak", "Przytulna", 23},
+		{"Damian", "Nowak", "Przytulna", 23}, 
+		{"Anna", "Kowalska", "Taneczna", 20},
+		{"Adam", "Kowalski", "Taneczna", 20}
+	};
 	void zadaniaZObiektow() {
 		cout << "obiekt li jako zmienna lokalna----------------\n";
 		//obiekt li jako zmienna lokalna:
@@ -193,17 +198,20 @@ namespace zadania {
 		1. zdefiniowac strukture (słowo kluczowe struct) Osoba [DONE - patrz define.h]
 		2. dodać do niej konstruktor [DONE];
 		3. przeciążyć operatory: rzutowania (string) i porównania : < [DONE]
-		4. TODO w domu: przeciążyć jeszcze ! i inne pozostałe
+		4. przeciążyć jeszcze ! i inne pozostałe
 		   operatory porównania: >, ==, <=, >=, != [nie wszystkie przeładowano]
  	    5. stworzyć kontener map<Osoba, double> i sprawdzić
-		   że nieodzowne jest przeciążenie operatora < na stukturę Osoba.
+		   że nieodzowne jest przeciążenie operatora < na stukturę Osoba. [DONE]
+		6. TODO: wygooglać jak zamiast przeciążania operatora < dla struktury Osoba
+		   można do kolekcji std::map ,,podrzucić'' komparator zewnętrzny
 		*/
 		Osoba oso1("Adam", "Kowalski", "Sloneczna", 7);
 		Osoba oso2 = { "Anna", "Kowalska", "Sloneczna", 7 }; //konstruktor kopiujący
 		Osoba oso3 = oso1;
 		oso3.nazwisko = "Koralewski";
-		/*można też tak tworzyć tablice obiektów: */
-		Osoba tabOso[2] = { {"Dorota", "Nowak", "Przytulna", 23}, 
+		/*można też tak tworzyć tablice obiektów (większa jest
+		utworzona zaraz na początku namespace jako tabOsoC: */
+		Osoba tabOsoL[2] = { {"Dorota", "Nowak", "Przytulna", 23}, 
 			{"Damian", "Nowak", "Przytulna", 23} };
 		//test rzutowania (string)
 		cout << "Osoba 1: " << (string)oso1 << endl;
@@ -223,7 +231,18 @@ namespace zadania {
 		cout << "TESTY PRZESZLY POMYŚLNIE\n";
 	}
 	void testyKolekcjiMap() {
-		cout << "TODO\n";
+		map<Osoba, double> mOsoKw; //kw - kwota
+		double kwota = 1000.0;
+		for (const auto &oso : tabOsoC) {
+			mOsoKw[oso] = (kwota += 100.0);
+		}
+		//wypisanie elementów mapy:
+		cout << "Wypisanie elementów mapy mOsoKw za pomocą pętli for(const auto...\n";
+		/*wypisze zawartość mapy ale posortowaną według komparatora 
+		< w strukturze Osoba a nie według kwoty. */
+		for (const auto& ele : mOsoKw) {
+			cout << (string)ele.first << " -> " << ele.second << endl;
+		}
 	}
 };
 //=======================

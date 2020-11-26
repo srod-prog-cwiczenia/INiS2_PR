@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <map>
 #include <string>
 #include <iostream>
 #include <assert.h>
@@ -49,7 +50,7 @@ struct Osoba {
 	friend bool operator < (const Osoba& a, const Osoba& b) {
 //taka forma przeci¹¿enia mo¿e zast¹piæ powy¿sz¹ a jest nieodzowna do
 //posortowania zawartoœci kontenera map
-		if (a.nazwisko < b.nazwisko) return true;
+	if (a.nazwisko < b.nazwisko) return true;
 		if (a.nazwisko > b.nazwisko) return false;
 		if (a.imie < b.imie) return true;
 		if (a.imie > b.imie) return false;
