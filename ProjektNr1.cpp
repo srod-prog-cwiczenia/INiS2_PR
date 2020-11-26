@@ -187,7 +187,7 @@ namespace zadania {
 		cout << "To jest lancuch char* " << liczba << endl;
 	}
 
-	void przeladowanieOperatorow() {
+	void testyJednostkowePrzeladowaniaOperatorow() {
 		//TODO:
 		/*
 		1. zdefiniowac strukture (słowo kluczowe struct) Osoba [DONE - patrz define.h]
@@ -221,6 +221,9 @@ namespace zadania {
 		assert(oso1 <= Osoba("Adam", "Kowalski", "Sloneczna", 7));
 
 		cout << "TESTY PRZESZLY POMYŚLNIE\n";
+	}
+	void testyKolekcjiMap() {
+		cout << "TODO\n";
 	}
 };
 //=======================
@@ -270,7 +273,26 @@ int main()
 			break;
 		}
 		case '8': {
-			zadania::przeladowanieOperatorow();
+		do {
+			cout << "1. Testy jednostkowe przeładowań operatorów\n"
+				"2. Zadania z kolekcji map<Osoba, double>\n"
+			    "0. Koniec\n";
+			cin >> txt;
+			if (txt.empty() || txt[0] == '0') break;
+			switch (txt[0]) {
+			case '1': {
+				zadania::testyJednostkowePrzeladowaniaOperatorow();
+				break;
+			}
+			case '2': {
+				zadania::testyKolekcjiMap();
+				break;
+			}
+			default:
+				break;
+			}
+		} while (true);
+		break;
 		}
 		default:
 			break;
