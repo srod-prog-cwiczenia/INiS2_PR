@@ -166,6 +166,8 @@ namespace zadania {
 		while (!cp2->koniecPliku()) {
 			char znak = cp2->getZnak();
 			cout << znak;
+			//zdjąć komentarz aby ujrzeć
+			//kody ASCII znaków: cout << ":" << (unsigned short int)(znak) << " ";
 		}
 		delete cp2;
 
@@ -190,7 +192,7 @@ namespace zadania {
 		/*
 		1. zdefiniowac strukture (słowo kluczowe struct) Osoba [DONE - patrz define.h]
 		2. dodać do niej konstruktor [DONE];
-		3. przeciążyć operatory: rzutowania (string) i porównania : <
+		3. przeciążyć operatory: rzutowania (string) i porównania : < [DONE]
 		4. TODO w domu: przeciążyć jeszcze ! i inne pozostałe
 		   operatory porównania: >, ==, <=, >=, !=
  	    5. stworzyć kontener map<Osoba, double> i sprawdzić
@@ -203,10 +205,17 @@ namespace zadania {
 		/*można też tak tworzyć tablice obiektów: */
 		Osoba tabOso[2] = { {"Dorota", "Nowak", "Przytulna", 23}, 
 			{"Damian", "Nowak", "Przytulna", 23} };
-
+		//test rzutowania (string)
 		cout << "Osoba 1: " << (string)oso1 << endl;
+		//test przeładowania !
 		assert (!oso1 == false);
 		assert (!Osoba("", "", "", 0));
+		//test przeładowania < :
+		assert(oso2 < oso1);
+		assert(!(oso1 < oso2));
+		//test przeładowania ==:
+		assert(!(oso1 == oso2));
+		assert (oso1 == Osoba("Adam", "Kowalski", "Sloneczna", 7));
 		cout << "TESTY PRZESZLY POMYŚLNIE\n";
 	}
 };
@@ -222,7 +231,7 @@ int main()
 		  "5. Autotesty jednostkowe zadania ze wskaźników \n"
 		  "6. Zadania z klas abstrakcyjnych (klasa CzytaczPlikuAbs i jej implementacje)\n"
 		  "7. Przykład na błąd podczas rzutowania int do łańcucha\n"
-		  "8. Zadania z przeładowania operatorów\n"
+		  "8. Zadania z przeładowania operatorów (testy jednostkowe przeładowań)\n"
 		  "0. Koniec\n";
 		string txt;
 		cin >> txt;

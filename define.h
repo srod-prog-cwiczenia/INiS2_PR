@@ -22,12 +22,12 @@ struct Osoba {
 	} adr;
 	Osoba(string imie_p, string nazwisko_p, string ulica_p, unsigned int nr_domu_p) :
 		imie(imie_p), nazwisko(nazwisko_p), adr(ulica_p, nr_domu_p) {};
-	string toString() {/*taka metoda jest w niektórych IDE 
+	string toString() const {/*taka metoda jest w niektórych IDE 
 					   tworzona ,,automatycznie'' */
 		return imie + " " + nazwisko + " " + adr.ulica + " " + to_string(adr.nr_domu);
 	};
 	/*prze³adowanie operatora rzutowania: */
-	operator string() { return toString(); };
+	operator string() const { return toString(); };
 	/*prze³adowanie operatora negacji: */
 	bool operator !() {
 		return imie.empty() && nazwisko.empty() &&
@@ -37,10 +37,19 @@ struct Osoba {
 	bool operator <(const Osoba& oo) {
 		/*inny sposób, ale czy dobry???*/
 		//return (string)(*this) < (string)oo;
-
 		if (nazwisko < oo.nazwisko) return true;
 		if (nazwisko > oo.nazwisko) return false;
-		/*TODO: dokoñczyæ (...)*/
-
+		if (imie < oo.imie) return true;
+		if (imie > oo.imie) return false;
+		if (adr.ulica < oo.adr.ulica) return true;
+		if (adr.ulica > oo.adr.ulica) return false;
+		if (adr.nr_domu < oo.adr.nr_domu) return true;
+		return false;
 	};
+	bool operator ==(const Osoba& oo) const {
+		return nazwisko == oo.nazwisko &&
+			imie == oo.imie &&
+			adr.ulica == oo.adr.ulica &&
+			adr.nr_domu == oo.adr.nr_domu;
+	}
 };
