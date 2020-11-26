@@ -34,10 +34,10 @@ struct Osoba {
 			adr.ulica.empty() && adr.nr_domu == 0;
 	};
 	/* prze³adowanie operatora < */
-	bool operator <(const Osoba& oo) {
+//	bool operator <(const Osoba& oo) {
 		/*inny sposób, ale czy dobry???*/
 		//return (string)(*this) < (string)oo;
-		if (nazwisko < oo.nazwisko) return true;
+	/*	if (nazwisko < oo.nazwisko) return true;
 		if (nazwisko > oo.nazwisko) return false;
 		if (imie < oo.imie) return true;
 		if (imie > oo.imie) return false;
@@ -45,11 +45,26 @@ struct Osoba {
 		if (adr.ulica > oo.adr.ulica) return false;
 		if (adr.nr_domu < oo.adr.nr_domu) return true;
 		return false;
-	};
+	};*/
+	friend bool operator < (const Osoba& a, const Osoba& b) {
+//taka forma przeci¹¿enia mo¿e zast¹piæ powy¿sz¹ a jest nieodzowna do
+//posortowania zawartoœci kontenera map
+		if (a.nazwisko < b.nazwisko) return true;
+		if (a.nazwisko > b.nazwisko) return false;
+		if (a.imie < b.imie) return true;
+		if (a.imie > b.imie) return false;
+		if (a.adr.ulica < b.adr.ulica) return true;
+		if (a.adr.ulica > b.adr.ulica) return false;
+		if (a.adr.nr_domu < b.adr.nr_domu) return true;
+		return false;
+	}
 	bool operator ==(const Osoba& oo) const {
 		return nazwisko == oo.nazwisko &&
 			imie == oo.imie &&
 			adr.ulica == oo.adr.ulica &&
 			adr.nr_domu == oo.adr.nr_domu;
+	}
+	bool operator <=(const Osoba& oo) const {
+		return *this < oo || *this == oo;
 	}
 };

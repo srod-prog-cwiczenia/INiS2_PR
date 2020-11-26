@@ -194,7 +194,7 @@ namespace zadania {
 		2. dodać do niej konstruktor [DONE];
 		3. przeciążyć operatory: rzutowania (string) i porównania : < [DONE]
 		4. TODO w domu: przeciążyć jeszcze ! i inne pozostałe
-		   operatory porównania: >, ==, <=, >=, !=
+		   operatory porównania: >, ==, <=, >=, != [nie wszystkie przeładowano]
  	    5. stworzyć kontener map<Osoba, double> i sprawdzić
 		   że nieodzowne jest przeciążenie operatora < na stukturę Osoba.
 		*/
@@ -216,6 +216,10 @@ namespace zadania {
 		//test przeładowania ==:
 		assert(!(oso1 == oso2));
 		assert (oso1 == Osoba("Adam", "Kowalski", "Sloneczna", 7));
+		//test przeładowania <=:
+		assert(!(oso1 <= oso2));
+		assert(oso1 <= Osoba("Adam", "Kowalski", "Sloneczna", 7));
+
 		cout << "TESTY PRZESZLY POMYŚLNIE\n";
 	}
 };
