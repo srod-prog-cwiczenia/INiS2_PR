@@ -253,10 +253,17 @@ namespace zadania {
 	/*funktor:*/
 	struct OpisOsobyFun {
 		/*utworzenie funktora polega na przeciążeniu 
-		specjalnego operatora () */
+		specjalnego operatora ().
+		Funktory to ,,starsza wersja'' lambda funkcji - ale 
+		mają ważną cechę, posiadają ,,wewnętrzny stan'',
+		taki efekt jest trudniejszy do uzyskania w lambda funkcji.*/
+	private:
+		unsigned int licznik;
+	public:
+		OpisOsobyFun() : licznik(0) {};
 		string operator ()
-			(const Osoba& oso) const {
-			return (string)oso;
+			(const Osoba& oso) {
+			return to_string(++licznik) + ". " + (string)oso;
 		};
 	};
 	void zadaniaZFunktorow() {
@@ -265,8 +272,9 @@ namespace zadania {
 		dorobić funktor zliczający wypisywaną osobę 
 		string fff(const Osoba & oso) {};
 		użyć funktora do numeracji linii w funkcji transform (moduł <algorith>)
+		[DONE]
 		*/
-					
+		cout << string(50, '=') << endl;
 		vector<Osoba> vOso;
 		for (const auto& oso : tabOsoC) 
 			vOso.push_back(oso);
@@ -282,6 +290,7 @@ namespace zadania {
 			"z użyciem funktorów\n";
 		transform(vOso.begin(), vOso.end(), vOpisOso2.begin(), OpisOsobyFun());
 		for (const auto& txt : vOpisOso2) cout << txt << endl;
+		cout << string(50, '=') << endl;
 	}
 };
 //=======================
