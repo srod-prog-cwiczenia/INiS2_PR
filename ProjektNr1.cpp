@@ -250,6 +250,15 @@ namespace zadania {
 			cout << (string)(*ite).first << " -> " << (*ite).second << endl;
 		}
 	}
+	/*funktor:*/
+	struct OpisOsobyFun {
+		/*utworzenie funktora polega na przeciążeniu 
+		specjalnego operatora () */
+		string operator ()
+			(const Osoba& oso) const {
+			return (string)oso;
+		};
+	};
 	void zadaniaZFunktorow() {
 		/*
 		stworzyć vector zawierający Osoby.
@@ -257,12 +266,22 @@ namespace zadania {
 		string fff(const Osoba & oso) {};
 		użyć funktora do numeracji linii w funkcji transform (moduł <algorith>)
 		*/
-		//TODO: do dokończenia za tydzień
+					
 		vector<Osoba> vOso;
 		for (const auto& oso : tabOsoC) 
 			vOso.push_back(oso);
-		vector<string> vOpisOso;
-	//	transform(vOso.begin(), vOso.end(), )
+		vector<string> vOpisOso1(vOso.size());
+		cout << "Transformacja wektora osób do wektora stringów "
+			"z użyciem lambda funkcji\n";
+		transform(vOso.begin(), vOso.end(), vOpisOso1.begin(), 
+			[](const Osoba& oso) -> string { return (string)oso; });
+		for (const auto &txt : vOpisOso1) cout << txt << endl;
+
+		vector<string> vOpisOso2(vOso.size());
+		cout << "Transformacja wektora osób do wektora stringów "
+			"z użyciem funktorów\n";
+		transform(vOso.begin(), vOso.end(), vOpisOso2.begin(), OpisOsobyFun());
+		for (const auto& txt : vOpisOso2) cout << txt << endl;
 	}
 };
 //=======================
