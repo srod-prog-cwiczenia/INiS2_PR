@@ -240,8 +240,14 @@ namespace zadania {
 		cout << "Wypisanie elementów mapy mOsoKw za pomocą pętli for(const auto...\n";
 		/*wypisze zawartość mapy ale posortowaną według komparatora 
 		< w strukturze Osoba a nie według kwoty. */
+		cout << "Zawartosc mapy:\n";
 		for (const auto& ele : mOsoKw) {
 			cout << (string)ele.first << " -> " << ele.second << endl;
+		}
+		/*a tu pętla po tak zwanych iteratorach:*/
+		cout << "Petla z uzyciem iteratorow\n";
+		for (auto ite = mOsoKw.begin(); ite != mOsoKw.end(); ite++) {
+			cout << (string)(*ite).first << " -> " << (*ite).second << endl;
 		}
 	}
 	void zadaniaZFunktorow() {
@@ -252,7 +258,11 @@ namespace zadania {
 		użyć funktora do numeracji linii w funkcji transform (moduł <algorith>)
 		*/
 		//TODO: do dokończenia za tydzień
-
+		vector<Osoba> vOso;
+		for (const auto& oso : tabOsoC) 
+			vOso.push_back(oso);
+		vector<string> vOpisOso;
+	//	transform(vOso.begin(), vOso.end(), )
 	}
 };
 //=======================
@@ -268,7 +278,8 @@ int main()
 		  "6. Zadania z klas abstrakcyjnych (klasa CzytaczPlikuAbs i jej implementacje)\n"
 		  "7. Przykład na błąd podczas rzutowania int do łańcucha\n"
 		  "8. Zadania z przeładowania operatorów (testy jednostkowe przeładowań)\n"
-		  "9. Zadania z funktorów zastosowanych do przetwarzania kolekcji (moduł <algorithm>)"
+		  "9. Zadania z funktorów zastosowanych do przetwarzania kolekcji (moduł <algorithm>)\n"
+	   	  "A. Opcja testowa\n"
 		  "0. Koniec\n";
 		string txt;
 		cin >> txt;
@@ -326,6 +337,10 @@ int main()
 		}
 		case '9': {
 			zadania::zadaniaZFunktorow();
+			break;
+		}
+		case 'a': case 'A': {
+			cout << "TESTY" << endl;
 			break;
 		}
 		default:
