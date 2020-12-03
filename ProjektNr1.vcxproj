@@ -157,6 +157,13 @@
     <ClInclude Include="define.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="ListaSformatowana.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ProjektNr1.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Zasoby\zadanieNaZaliczenie.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
